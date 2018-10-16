@@ -1,6 +1,6 @@
 {
   "name": "@s-isabella/settings",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Load settings from files, options and env with checking",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -27,7 +27,7 @@
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "@s-isabella/scripts-backend": "^0.0.14"
+    "@s-isabella/scripts-backend": "^0.1.0"
   },
   "scripts": {
     "prepare": "isa-scripts-backend build-typedefs",
