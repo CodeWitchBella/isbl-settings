@@ -1,6 +1,6 @@
 {
   "name": "@s-isabella/settings",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Load settings from files, options and env with checking",
   "main": "build/index.js",
   "types": "build/index.d.ts",
