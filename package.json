@@ -1,6 +1,6 @@
 {
   "name": "@codewitchbella/settings",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Load settings from files, options and env with checking",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -27,7 +27,7 @@
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "@codewitchbella/scripts-backend": "^0.1.4"
+    "@codewitchbella/scripts-backend": "^0.1.5"
   },
   "scripts": {
     "prepare": "isa-scripts-backend build-typedefs",
