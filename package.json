@@ -2,18 +2,21 @@
   "name": "@codewitchbella/settings",
   "version": "0.1.6",
   "description": "Load settings from files, options and env with checking",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
+  "umd:main": "dist/inex.umd.js",
+  "module": "dist/index.mjs",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/isabella.skorepova/isa-scripts.git"
+    "url": "git+https://gitlab.com/codewitchbella/isa-scripts.git"
   },
   "author": "Isabella Skořepová <isabella@skorepova.info>",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/isabella.skorepova/isa-scripts/issues"
+    "url": "https://gitlab.com/codewitchbella/isa-scripts/issues"
   },
-  "homepage": "https://gitlab.com/isabella.skorepova/isa-scripts#readme",
+  "homepage": "https://gitlab.com/codewitchbella/isa-scripts#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -21,17 +24,18 @@
     "@types/lodash.camelcase": "^4.3.4",
     "@types/lodash.mapvalues": "^4.6.4",
     "@types/minimist": "^1.2.0",
-    "@types/node": "^10.12.15",
+    "@types/node": "^10.12.23",
     "lodash.camelcase": "^4.3.0",
     "lodash.mapvalues": "^4.6.0",
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "@codewitchbella/scripts-backend": "^0.1.5"
+    "@codewitchbella/scripts-backend": "^0.1.5",
+    "microbundle": "^0.9.0"
   },
   "scripts": {
-    "prepare": "isa-scripts-backend build-typedefs",
-    "check": "isa-scripts-backend check",
-    "lint": "isa-scripts-backend lint"
+    "prepare": "microbundle --target node --external path",
+    "check": "cwb-scripts-backend check",
+    "lint": "cwb-scripts-backend lint"
   }
 }
