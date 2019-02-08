@@ -1,6 +1,6 @@
 {
   "name": "@codewitchbella/settings",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Load settings from files, options and env with checking",
   "main": "dist/index.js",
   "umd:main": "dist/inex.umd.js",
@@ -30,7 +30,7 @@
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "@codewitchbella/scripts-backend": "^0.1.5",
+    "@codewitchbella/scripts-backend": "^0.2.0",
     "microbundle": "^0.9.0"
   },
   "scripts": {
