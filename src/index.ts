@@ -48,6 +48,9 @@ function checkOptions({ config, merged }: any) {
     } else if (config[key] === 'boolean') {
       if (typeof value !== 'boolean')
         throw new Error(`Value of option ${key} should be boolean`)
+    } else if (config[key] === 'string|false') {
+      if (typeof value !== 'string' && value !== false)
+        throw new Error(`Value of option ${key} should be string or false`)
     } else {
       throw new Error(`Unknown config type ${config[key]} specified for ${key}`)
     }
@@ -98,7 +101,7 @@ const settingsParser = <E extends {}>({
   argv?: string[]
 }) => <
   T extends {
-    [key: string]: 'string' | 'number' | 'boolean' | 'string[]'
+    [key: string]: 'string' | 'number' | 'boolean' | 'string[]' | 'string|false'
   }
 >(
   config: T,
@@ -108,10 +111,14 @@ const settingsParser = <E extends {}>({
     [key in keyof T]: T[key] extends 'string'
       ? string
       : T[key] extends 'number'
-        ? number
-        : T[key] extends 'boolean'
-          ? boolean
-          : T[key] extends 'string[]' ? string[] : never
+      ? number
+      : T[key] extends 'boolean'
+      ? boolean
+      : T[key] extends 'string[]'
+      ? string[]
+      : T[key] extends 'string|false'
+      ? string | false
+      : never
   }
 } => {
   // load
