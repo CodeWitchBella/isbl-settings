@@ -89,6 +89,14 @@ function rewriteDolarsFromEnv(merged: any) {
   return ret
 }
 
+// ponyfill for Object.fromEntries
+const fromEntries = (iterable: any) => {
+  return [...iterable].reduce(
+    (obj, { 0: key, 1: val }) => Object.assign(obj, { [key]: val }),
+    {},
+  )
+}
+
 const settingsParser = <E extends {}>({
   configDir,
   envs,
@@ -125,8 +133,14 @@ const settingsParser = <E extends {}>({
   const rawEnv = process.env.NODE_ENV || ''
   const env = envs.includes(rawEnv as any) ? ((rawEnv as any) as E) : defaultEnv
 
-  const json = JSON.parse(
+  const jsonRaw = JSON.parse(
     fs.readFileSync(path.join(configDir, `${env}.json`), 'utf-8'),
+  )
+  function isComment(key: string, value: any) {
+    return key.startsWith('#') && value === ''
+  }
+  const json = fromEntries(
+    Object.entries(jsonRaw).filter(([key, value]) => !isComment(key, value)),
   )
   const args = camelCaseObject(minimist(argv))
   delete args['']
