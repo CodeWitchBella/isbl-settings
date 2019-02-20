@@ -1,6 +1,6 @@
 {
   "name": "@codewitchbella/settings",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Load settings from files, options and env with checking",
   "main": "dist/index.js",
   "source": "src/index.ts",
