@@ -80,7 +80,7 @@ function coerce(config: any, merged: any) {
 function rewriteDolarsFromEnv(merged: any) {
   const ret = { ...merged }
   for (const [key, value] of Object.entries(merged)) {
-    if (typeof value === 'string' && /^\$[a-zA-Z_]+$/.exec(value)) {
+    if (typeof value === 'string' && /^\$[a-zA-Z0-9_]+$/.exec(value)) {
       ret[key] = process.env[value.substring(1)]
     } else if (typeof value === 'string' && /^\\\$/.exec(value)) {
       ret[key] = merged[key].substring(1)
