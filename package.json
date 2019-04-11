@@ -1,6 +1,6 @@
 {
   "name": "@codewitchbella/settings",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Load settings from files, options and env with checking",
   "main": "dist/index.js",
   "source": "src/index.ts",
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@codewitchbella/microbundle": "^0.11.1",
-    "@codewitchbella/scripts-backend": "^0.2.0"
+    "@codewitchbella/scripts-backend": "^0.2.1"
   },
   "scripts": {
     "prepare": "microbundle --target node",
