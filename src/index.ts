@@ -41,7 +41,8 @@ function checkOptions({
 }) {
   for (const key of Object.keys(config)) {
     const value = merged[key]
-    if (skipDollars && value.startsWith('$')) continue
+    if (skipDollars && typeof value === 'string' && value.startsWith('$'))
+      continue
     if (!(key in merged)) throw new Error(`Missing option ${key}`)
     if (config[key] === 'string[]') {
       // is not array or something is string
