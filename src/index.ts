@@ -133,26 +133,30 @@ const settingsParser = <E extends {}>({
   const rawEnv = process.env.NODE_ENV || ''
   const env = envs.includes(rawEnv as any) ? ((rawEnv as any) as E) : defaultEnv
 
-  const jsonRaw = JSON.parse(
-    fs.readFileSync(path.join(configDir, `${env}.json`), 'utf-8'),
-  )
-  function isComment(key: string, value: any) {
-    return key.startsWith('#') && value === ''
+  const settingMap = new Map<E, any>()
+  for (const currentEnv of env === defaultEnv ? envs : [env]) {
+    const jsonRaw = JSON.parse(
+      fs.readFileSync(path.join(configDir, `${currentEnv}.json`), 'utf-8'),
+    )
+    function isComment(key: string, value: any) {
+      return key.startsWith('#') && value === ''
+    }
+    const json = fromEntries(
+      Object.entries(jsonRaw).filter(([key, value]) => !isComment(key, value)),
+    )
+    const args = camelCaseObject(minimist(argv))
+    delete args['']
+
+    let merged = { ...json, ...args }
+
+    // check and transform
+    checkForExtra({ config, json, args, env: currentEnv, merged })
+    merged = rewriteDolarsFromEnv(merged)
+    merged = coerce(config, merged)
+    checkOptions({ config, merged })
+    settingMap.set(currentEnv, merged)
   }
-  const json = fromEntries(
-    Object.entries(jsonRaw).filter(([key, value]) => !isComment(key, value)),
-  )
-  const args = camelCaseObject(minimist(argv))
-  delete args['']
 
-  let merged = { ...json, ...args }
-
-  // check and transform
-  checkForExtra({ config, json, args, env, merged })
-  merged = rewriteDolarsFromEnv(merged)
-  merged = coerce(config, merged)
-  checkOptions({ config, merged })
-
-  return { env, settings: merged as any }
+  return { env, settings: settingMap.get(env) }
 }
 export default settingsParser
