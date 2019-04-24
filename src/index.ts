@@ -30,9 +30,18 @@ function checkForExtra({ config, json, args, env, merged }: any) {
   }
 }
 
-function checkOptions({ config, merged }: any) {
+function checkOptions({
+  config,
+  merged,
+  skipDollars,
+}: {
+  config: any
+  merged: any
+  skipDollars: boolean
+}) {
   for (const key of Object.keys(config)) {
     const value = merged[key]
+    if (skipDollars && value.startsWith('$')) continue
     if (!(key in merged)) throw new Error(`Missing option ${key}`)
     if (config[key] === 'string[]') {
       // is not array or something is string
@@ -151,9 +160,9 @@ const settingsParser = <E extends {}>({
 
     // check and transform
     checkForExtra({ config, json, args, env: currentEnv, merged })
-    merged = rewriteDolarsFromEnv(merged)
+    merged = currentEnv === env ? rewriteDolarsFromEnv(merged) : merged
     merged = coerce(config, merged)
-    checkOptions({ config, merged })
+    checkOptions({ config, merged, skipDollars: currentEnv !== env })
     settingMap.set(currentEnv, merged)
   }
 
