@@ -144,13 +144,13 @@ const settingsParser = <E extends {}>({
   const env = envs.includes(rawEnv as any) ? ((rawEnv as any) as E) : defaultEnv
 
   const settingMap = new Map<E, any>()
+  function isComment(key: string, value: any) {
+    return key.startsWith('#') && value === ''
+  }
   for (const currentEnv of env === defaultEnv ? envs : [env]) {
     const jsonRaw = JSON.parse(
       fs.readFileSync(path.join(configDir, `${currentEnv}.json`), 'utf-8'),
     )
-    function isComment(key: string, value: any) {
-      return key.startsWith('#') && value === ''
-    }
     const json = fromEntries(
       Object.entries(jsonRaw).filter(([key, value]) => !isComment(key, value)),
     )
