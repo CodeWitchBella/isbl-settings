@@ -22,7 +22,7 @@
     "@types/lodash.camelcase": "^4.3.6",
     "@types/lodash.mapvalues": "^4.6.6",
     "@types/minimist": "^1.2.0",
-    "@types/node": "^12.6.8",
+    "@types/node": "^12.12.17",
     "lodash.camelcase": "^4.3.0",
     "lodash.mapvalues": "^4.6.0",
     "minimist": "^1.2.0"
