@@ -46,7 +46,7 @@ function checkOptions({
     if (!(key in merged)) throw new Error(`Missing option ${key}`)
     if (config[key] === 'string[]') {
       // is not array or something is string
-      if (!Array.isArray(value) || value.some(v => typeof v !== 'string')) {
+      if (!Array.isArray(value) || value.some((v) => typeof v !== 'string')) {
         throw new Error(`Value of option ${key} should be array of strings`)
       }
     } else if (config[key] === 'string') {
