@@ -28,6 +28,12 @@
     "microbundle": "^0.13.3"
   },
   "scripts": {
-    "prepare": "microbundle --target node"
+    "prepare": "microbundle --target node",
+    "prepublishOnly": "isbl-publisher prepublishOnly",
+    "publish:npm": "isbl-publisher publish --no-draft"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CodeWitchBella/isbl-settings.git"
   }
 }
