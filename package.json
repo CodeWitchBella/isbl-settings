@@ -8,13 +8,14 @@
   "types": "dist/index.d.ts",
   "author": "Isabella Skořepová <isabella@skorepova.info>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://gitlab.com/codewitchbella/isa-scripts/issues"
-  },
-  "homepage": "https://gitlab.com/codewitchbella/isa-scripts#readme",
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
   "dependencies": {
     "@types/lodash.camelcase": "^4.3.6",
     "@types/lodash.mapvalues": "^4.6.6",
