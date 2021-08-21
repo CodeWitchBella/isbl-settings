@@ -1,7 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import minimist from 'minimist'
-import mapValues from 'lodash/mapValues'
 import camelCase from 'lodash/camelCase'
 
 const transformKey = (transformer: (key: string) => string) => (obj: any) => {
@@ -66,6 +65,13 @@ function checkOptions({
     }
   }
 }
+function mapValues(obj: any, callback: (value: any, key: string) => any) {
+  return Object.fromEntries(
+    Object.entries(obj).map(
+      ([key, value]) => [key, callback(value, key)]
+    )
+  )
+}
 
 function coerce(config: any, merged: any) {
   return mapValues(merged, (value, key) => {
@@ -97,14 +103,6 @@ function rewriteDolarsFromEnv(merged: any) {
     }
   }
   return ret
-}
-
-// ponyfill for Object.fromEntries
-const fromEntries = (iterable: any) => {
-  return [...iterable].reduce(
-    (obj, { 0: key, 1: val }) => Object.assign(obj, { [key]: val }),
-    {},
-  )
 }
 
 const settingsParser = <E extends {}>({
@@ -151,7 +149,7 @@ const settingsParser = <E extends {}>({
     const jsonRaw = JSON.parse(
       fs.readFileSync(path.join(configDir, `${currentEnv}.json`), 'utf-8'),
     )
-    const json = fromEntries(
+    const json = Object.fromEntries(
       Object.entries(jsonRaw).filter(([key, value]) => !isComment(key, value)),
     )
     const args = camelCaseObject(minimist(argv))

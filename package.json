@@ -1,6 +1,6 @@
 {
   "name": "@isbl/settings",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Load settings from files, options and env with checking",
   "main": "dist/index.js",
   "exports": "./dist/index.mjs",
