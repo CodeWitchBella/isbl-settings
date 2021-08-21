@@ -1,6 +1,6 @@
 {
   "name": "@isbl/settings",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Load settings from files, options and env with checking",
   "main": "dist/index.js",
   "exports": "./dist/index.mjs",
@@ -17,8 +17,7 @@
     "README.md"
   ],
   "dependencies": {
-    "@types/lodash.camelcase": "^4.3.6",
-    "@types/lodash.mapvalues": "^4.6.6",
+    "@types/lodash": "^4.14.172",
     "@types/minimist": "^1.2.0",
     "@types/node": ">=14.0.27",
     "lodash": "^4.17.21",
