@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "exports": {
     "require": "./dist/index.js",
+    "module": "./dist/index.mjs",
     "default": "./dist/index.mjs"
   },
   "source": "src/index.ts",
