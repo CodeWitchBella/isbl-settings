@@ -1,9 +1,12 @@
 {
   "name": "@isbl/settings",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Load settings from files, options and env with checking",
   "main": "dist/index.js",
-  "exports": "./dist/index.mjs",
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.mjs"
+  },
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "author": "Isabella Skořepová <isabella@skorepova.info>",
