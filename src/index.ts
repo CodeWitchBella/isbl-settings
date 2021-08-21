@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import minimist from 'minimist'
-import mapValues from 'lodash.mapvalues'
-import camelCase from 'lodash.camelcase'
+import mapValues from 'lodash/mapValues'
+import camelCase from 'lodash/camelCase'
 
 const transformKey = (transformer: (key: string) => string) => (obj: any) => {
   const ret = {} as any
