@@ -21,13 +21,13 @@
     "README.md"
   ],
   "dependencies": {
-    "@types/lodash": "^4.14.172",
-    "@types/minimist": "^1.2.0",
-    "@types/node": ">=14.0.27",
     "lodash": "^4.17.21",
     "minimist": "^1.2.5"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.172",
+    "@types/minimist": "^1.2.0",
+    "@types/node": ">=14.0.27",
     "@isbl/publisher": "^0.7.1",
     "microbundle": "^0.13.3"
   },
