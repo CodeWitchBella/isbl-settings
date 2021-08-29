@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import minimist from 'minimist'
-import camelCase from 'lodash/camelCase'
+import camelCase from 'lodash/camelCase.js'
 
 const transformKey = (transformer: (key: string) => string) => (obj: any) => {
   const ret = {} as any
