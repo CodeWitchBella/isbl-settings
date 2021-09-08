@@ -2,23 +2,13 @@
   "name": "@isbl/settings",
   "version": "0.5.0",
   "description": "Load settings from files, options and env with checking",
-  "main": "dist/index.js",
-  "exports": {
-    "require": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "default": "./dist/index.mjs"
-  },
-  "source": "src/index.ts",
-  "types": "dist/index.d.ts",
+  "exports": "./dist/settings.esm.js",
+  "types": "dist/settings.d.ts",
   "author": "Isabella Skořepová <isabella@skorepova.info>",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
+  "private": false,
   "files": [
-    "dist",
-    "src",
-    "README.md"
+    "dist"
   ],
   "dependencies": {
     "lodash": "^4.17.21",
@@ -26,18 +16,22 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.172",
-    "@types/minimist": "^1.2.0",
-    "@types/node": ">=14.0.27",
+    "@types/minimist": "^1.2.2",
+    "@types/node": ">=16.9.0",
     "@isbl/publisher": "^0.7.1",
     "microbundle": "^0.13.3"
   },
   "scripts": {
-    "prepare": "microbundle --target node",
+    "prepare": "microbundle src/settings.ts --target node -f esm",
     "prepublishOnly": "isbl-publisher prepublishOnly",
     "publish:npm": "isbl-publisher publish --no-draft"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/CodeWitchBella/isbl-settings.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": "^14.13.1 || >=16.0.0"
   }
 }
